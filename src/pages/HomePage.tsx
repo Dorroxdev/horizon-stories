@@ -180,8 +180,13 @@ export default function HomePage() {
               <p className="text-sm text-muted-foreground">{podcastEpisodes[0].guestName} · {podcastEpisodes[0].duration}</p>
             </div>
           </div>
-          <div className="h-2 bg-muted rounded-full overflow-hidden">
-            <div className="h-full w-1/3 bg-primary rounded-full" />
+          <div className="flex items-center gap-3">
+            <button className="w-10 h-10 rounded-full bg-primary/20 hover:bg-primary/30 flex items-center justify-center shrink-0 transition-colors">
+              <Play className="w-4 h-4 text-primary ml-0.5" />
+            </button>
+            <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+              <div className="h-full w-1/3 bg-primary rounded-full" />
+            </div>
           </div>
         </div>
         <div className="flex flex-wrap gap-3">
