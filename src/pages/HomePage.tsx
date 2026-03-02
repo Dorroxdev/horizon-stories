@@ -67,7 +67,7 @@ export default function HomePage() {
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Link to={`/stories/${featured.slug}`}><Play className="w-4 h-4 mr-1" /> Watch Latest Episode</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-border hover:bg-muted/50">
+              <Button asChild variant="outline" size="lg" className="border-border hover:bg-muted/50 hover:text-foreground">
                 <Link to="/stories">Browse Stories</Link>
               </Button>
             </motion.div>
