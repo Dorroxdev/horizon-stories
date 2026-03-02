@@ -1,0 +1,31 @@
+# Horizon Launchpad — llms.txt
+
+> Horizon Launchpad is a multi-format founder stories media platform featuring real interviews with founders, expert playbooks, failure post-mortems, and actionable guides — with transparent revenue numbers.
+
+## Site Structure
+
+### Main Content
+- [Founder Stories](/stories) — Video interviews and written stories from founders with real revenue data
+- [Case Studies](/case-studies) — In-depth 2,000-4,000 word written breakdowns of real businesses with revenue, costs, mistakes, and playbooks
+- [Failure Post-Mortems](/failures) — Honest breakdowns of startup failures with exact dollar amounts
+- [Expert Playbooks](/playbooks) — Battle-tested frameworks from operators at companies like Stripe
+- [Guides & Frameworks](/guides) — Step-by-step resources for founders at every stage
+
+### Podcast & Newsletter
+- [Podcast](/podcast) — Audio/video interviews available on Spotify, Apple Podcasts, YouTube
+- [Newsletter](/newsletter) — Weekly deep-dives into founder stories and frameworks
+
+### Data & Insights
+- [Startup Costs: SaaS](/insights/startup-costs/saas-business) — Real cost data from founder case studies
+- [Bootstrapped Success Stories](/insights/success-stories/bootstrapped-saas) — Curated stories with revenue data
+
+### Sample Case Studies
+- [How Sarah Chen Bootstrapped TechCo to $10M ARR](/case-studies/how-sarah-chen-bootstrapped-techco-to-10m-arr)
+- [Marcus Rivera: $2M Startup Failure Post-Mortem](/case-studies/marcus-rivera-novapay-2m-failure)
+- [Aisha Patel: Side Project to $3M ARR](/case-studies/how-aisha-patel-built-datapulse-to-3m-arr)
+
+### Other Pages
+- [Guests Directory](/guests) — Searchable directory of all interviewed founders
+- [Topics](/topics) — Browse content by topic (SaaS, AI, Fintech, etc.)
+- [Submit Your Story](/submit) — Apply to be interviewed or submit a written case study
+- [About](/about) — About the platform and host Altan Doyran

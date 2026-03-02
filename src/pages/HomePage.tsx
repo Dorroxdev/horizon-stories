@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Rocket, AlertTriangle, BookOpen, Brain, Map, Play, ArrowRight, Mail, Music, Youtube, Clock, Linkedin, Twitter } from 'lucide-react';
+import { Rocket, AlertTriangle, BookOpen, Brain, Map, Play, ArrowRight, Mail, Music, Youtube, Clock, Linkedin, Twitter, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { stories, podcastEpisodes, guests } from '@/data/sampleData';
@@ -34,6 +34,7 @@ export default function HomePage() {
 
   const pillars = [
     { icon: Rocket, title: 'Founder Stories', count: '47 stories', desc: 'How they built it, the real numbers', path: '/stories', gradient: 'from-primary/20 to-purple-600/10' },
+    { icon: FileText, title: 'Case Studies', count: '127 deep-dives', desc: '2,000+ word written breakdowns with revenue data', path: '/case-studies', gradient: 'from-amber-500/15 to-accent/10' },
     { icon: AlertTriangle, title: 'Failure Post-Mortems', count: '12 post-mortems', desc: 'What went wrong and why', path: '/failures', gradient: 'from-destructive/15 to-orange-600/10' },
     { icon: BookOpen, title: 'Expert Playbooks', count: '23 playbooks', desc: 'Frameworks from operators who\'ve done it', path: '/playbooks', gradient: 'from-emerald-500/15 to-teal-600/10' },
     { icon: Brain, title: 'AI Strategy', count: '18 deep-dives', desc: 'Applied AI from a practitioner', path: '/stories', gradient: 'from-violet-500/15 to-primary/10' },

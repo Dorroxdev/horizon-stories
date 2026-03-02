@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/s
 
 const navLinks = [
   { label: 'Stories', path: '/stories' },
+  { label: 'Case Studies', path: '/case-studies' },
   { label: 'Failures', path: '/failures' },
   { label: 'Playbooks', path: '/playbooks' },
   { label: 'Guides', path: '/guides' },
