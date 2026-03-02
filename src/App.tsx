@@ -16,6 +16,9 @@ import AboutPage from "./pages/AboutPage";
 import GuestsPage from "./pages/GuestsPage";
 import TopicsPage from "./pages/TopicsPage";
 import SubmitPage from "./pages/SubmitPage";
+import CaseStudiesPage from "./pages/CaseStudiesPage";
+import CaseStudyDetailPage from "./pages/CaseStudyDetailPage";
+import InsightsPage from "./pages/InsightsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +37,9 @@ const App = () => (
             <Route path="/failures" element={<FailuresPage />} />
             <Route path="/playbooks" element={<PlaybooksPage />} />
             <Route path="/guides" element={<GuidesPage />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
+            <Route path="/insights/:type/:slug" element={<InsightsPage />} />
             <Route path="/podcast" element={<PodcastPage />} />
             <Route path="/newsletter" element={<NewsletterPage />} />
             <Route path="/about" element={<AboutPage />} />
