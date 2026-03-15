@@ -197,8 +197,8 @@ export default function CaseStudyDetailPage() {
                   );
                 case 'tip':
                   return (
-                    <div key={i} className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5 my-6 flex gap-3">
-                      <Lightbulb className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <div key={i} className="rounded-xl border border-success/20 bg-success/5 p-5 my-6 flex gap-3">
+                      <Lightbulb className="w-5 h-5 text-success shrink-0 mt-0.5" />
                       <p className="text-sm text-foreground/90 leading-relaxed">{section.content}</p>
                     </div>
                   );
