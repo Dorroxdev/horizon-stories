@@ -33,12 +33,12 @@ export default function HomePage() {
   const recentGuests = guests.slice(0, 5);
 
   const pillars = [
-    { icon: Rocket, title: 'Founder Stories', count: '47 stories', desc: 'How they built it, the real numbers', path: '/stories', gradient: 'from-primary/20 to-amber-600/10' },
-    { icon: FileText, title: 'Case Studies', count: '127 deep-dives', desc: '2,000+ word written breakdowns with revenue data', path: '/case-studies', gradient: 'from-amber-500/15 to-accent/10' },
-    { icon: AlertTriangle, title: 'Failure Post-Mortems', count: '12 post-mortems', desc: 'What went wrong and why', path: '/failures', gradient: 'from-destructive/15 to-orange-600/10' },
-    { icon: BookOpen, title: 'Expert Playbooks', count: '23 playbooks', desc: 'Frameworks from operators who\'ve done it', path: '/playbooks', gradient: 'from-emerald-500/15 to-teal-600/10' },
-    { icon: Brain, title: 'AI Strategy', count: '18 deep-dives', desc: 'Applied AI from a practitioner', path: '/stories', gradient: 'from-orange-500/15 to-primary/10' },
-    { icon: Map, title: 'Guides & Frameworks', count: '15 guides', desc: 'Step-by-step resources', path: '/guides', gradient: 'from-amber-400/15 to-orange-600/10' },
+    { icon: Rocket, title: 'Founder Stories', count: '47 stories', desc: 'How they built it, the real numbers', path: '/stories', gradient: 'from-primary/20 to-nessie/10' },
+    { icon: FileText, title: 'Case Studies', count: '127 deep-dives', desc: '2,000+ word written breakdowns with revenue data', path: '/case-studies', gradient: 'from-nessie/15 to-primary/10' },
+    { icon: AlertTriangle, title: 'Failure Post-Mortems', count: '12 post-mortems', desc: 'What went wrong and why', path: '/failures', gradient: 'from-destructive/15 to-warning/10' },
+    { icon: BookOpen, title: 'Expert Playbooks', count: '23 playbooks', desc: 'Frameworks from operators who\'ve done it', path: '/playbooks', gradient: 'from-success/15 to-primary/10' },
+    { icon: Brain, title: 'AI Strategy', count: '18 deep-dives', desc: 'Applied AI from a practitioner', path: '/stories', gradient: 'from-info/15 to-primary/10' },
+    { icon: Map, title: 'Guides & Frameworks', count: '15 guides', desc: 'Step-by-step resources', path: '/guides', gradient: 'from-oat-milk/15 to-primary/10' },
   ];
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -76,7 +76,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp} custom={3} initial="hidden" animate="visible" className="flex items-center gap-4 mt-12 flex-wrap">
             {recentGuests.map((g, i) => (
               <Link to={`/stories/${g.storySlug}`} key={g.id} className="flex items-center gap-2 group">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-xs font-bold text-foreground/70">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-xs font-bold text-foreground/70">
                   {g.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors hidden sm:inline">{g.name}</span>
@@ -172,7 +172,7 @@ export default function HomePage() {
         <p className="text-muted-foreground mb-8">New episodes every Tuesday & Thursday</p>
         <div className="rounded-xl border border-border bg-card p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-primary/30 to-amber-600/20 flex items-center justify-center shrink-0">
+            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center shrink-0">
               <Music className="w-8 h-8 text-primary" />
             </div>
             <div>
@@ -191,7 +191,7 @@ export default function HomePage() {
         </div>
         <div className="flex flex-wrap gap-3">
           {[{ icon: Music, label: 'Spotify' }, { icon: Music, label: 'Apple Podcasts' }, { icon: Youtube, label: 'YouTube' }, { icon: Music, label: 'Amazon Music' }].map(p => (
-            <a key={p.label} href="#" className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-card hover:border-primary/30 transition-colors text-sm text-muted-foreground hover:text-foreground">
+            <a key={p.label} href="#" className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:border-primary/30 transition-colors text-sm text-muted-foreground hover:text-foreground">
               <p.icon className="w-4 h-4" /> {p.label}
             </a>
           ))}
@@ -217,7 +217,7 @@ export default function HomePage() {
         <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 snap-x">
           {guests.map(g => (
             <Link to={`/stories/${g.storySlug}`} key={g.id} className="shrink-0 w-64 snap-start rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-all">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-lg font-bold text-foreground/70 mb-3">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-lg font-bold text-foreground/70 mb-3">
                 {g.name.split(' ').map(n => n[0]).join('')}
               </div>
               <p className="font-semibold text-sm">{g.name}</p>

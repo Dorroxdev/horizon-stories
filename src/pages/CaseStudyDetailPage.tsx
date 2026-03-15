@@ -77,7 +77,7 @@ export default function CaseStudyDetailPage() {
           </motion.h1>
 
           <div className="flex items-center gap-4 mb-6 flex-wrap">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-sm font-bold text-foreground/70">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-sm font-bold text-foreground/70">
               {cs.founderName.split(' ').map(n => n[0]).join('')}
             </div>
             <div>
@@ -197,8 +197,8 @@ export default function CaseStudyDetailPage() {
                   );
                 case 'tip':
                   return (
-                    <div key={i} className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5 my-6 flex gap-3">
-                      <Lightbulb className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <div key={i} className="rounded-xl border border-success/20 bg-success/5 p-5 my-6 flex gap-3">
+                      <Lightbulb className="w-5 h-5 text-success shrink-0 mt-0.5" />
                       <p className="text-sm text-foreground/90 leading-relaxed">{section.content}</p>
                     </div>
                   );
@@ -284,7 +284,7 @@ export default function CaseStudyDetailPage() {
             {/* Founder Bio */}
             <section className="my-12 rounded-xl border border-border bg-card p-6">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-lg font-bold text-foreground/70 shrink-0">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-lg font-bold text-foreground/70 shrink-0">
                   {cs.founderName.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
