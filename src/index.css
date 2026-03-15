@@ -85,7 +85,7 @@
     @apply bg-card/90 backdrop-blur-2xl border border-border/50;
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-amber-400;
   }
   .glow-primary {
     box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.4);
