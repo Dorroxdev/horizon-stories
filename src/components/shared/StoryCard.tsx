@@ -11,7 +11,7 @@ export default function StoryCard({ story, accentColor }: StoryCardProps) {
   const badgeClass = story.contentType === 'Video'
     ? 'bg-primary/20 text-primary'
     : story.contentType === 'Podcast'
-    ? 'bg-purple-500/20 text-purple-400'
+    ? 'bg-primary/20 text-primary'
     : 'bg-muted text-muted-foreground';
 
   return (

@@ -56,7 +56,7 @@ export default function StoryDetailPage() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
             <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {story.date}</span>
             <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {story.duration}</span>
-            <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${story.contentType === 'Video' ? 'bg-primary/20 text-primary' : story.contentType === 'Podcast' ? 'bg-purple-500/20 text-purple-400' : 'bg-muted'}`}>
+            <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${story.contentType === 'Video' ? 'bg-primary/20 text-primary' : story.contentType === 'Podcast' ? 'bg-primary/20 text-primary' : 'bg-muted'}`}>
               {story.contentType}
             </span>
             {story.revenue !== 'N/A' && <span className="font-bold text-accent">{story.revenue}</span>}

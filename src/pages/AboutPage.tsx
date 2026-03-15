@@ -18,7 +18,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="hero-mesh py-24">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl text-center">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/30 to-purple-600/20 flex items-center justify-center text-3xl font-bold text-foreground/70 mx-auto mb-6">AD</div>
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/30 to-amber-600/20 flex items-center justify-center text-3xl font-bold text-foreground/70 mx-auto mb-6">AD</div>
           <h1 className="font-display font-bold text-3xl md:text-5xl mb-3">Altan Doyran</h1>
           <p className="text-lg text-muted-foreground">Founder, AI Practitioner, Interviewer</p>
         </div>

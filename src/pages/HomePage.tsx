@@ -33,12 +33,12 @@ export default function HomePage() {
   const recentGuests = guests.slice(0, 5);
 
   const pillars = [
-    { icon: Rocket, title: 'Founder Stories', count: '47 stories', desc: 'How they built it, the real numbers', path: '/stories', gradient: 'from-primary/20 to-purple-600/10' },
+    { icon: Rocket, title: 'Founder Stories', count: '47 stories', desc: 'How they built it, the real numbers', path: '/stories', gradient: 'from-primary/20 to-amber-600/10' },
     { icon: FileText, title: 'Case Studies', count: '127 deep-dives', desc: '2,000+ word written breakdowns with revenue data', path: '/case-studies', gradient: 'from-amber-500/15 to-accent/10' },
     { icon: AlertTriangle, title: 'Failure Post-Mortems', count: '12 post-mortems', desc: 'What went wrong and why', path: '/failures', gradient: 'from-destructive/15 to-orange-600/10' },
     { icon: BookOpen, title: 'Expert Playbooks', count: '23 playbooks', desc: 'Frameworks from operators who\'ve done it', path: '/playbooks', gradient: 'from-emerald-500/15 to-teal-600/10' },
-    { icon: Brain, title: 'AI Strategy', count: '18 deep-dives', desc: 'Applied AI from a practitioner', path: '/stories', gradient: 'from-violet-500/15 to-primary/10' },
-    { icon: Map, title: 'Guides & Frameworks', count: '15 guides', desc: 'Step-by-step resources', path: '/guides', gradient: 'from-sky-500/15 to-blue-600/10' },
+    { icon: Brain, title: 'AI Strategy', count: '18 deep-dives', desc: 'Applied AI from a practitioner', path: '/stories', gradient: 'from-orange-500/15 to-primary/10' },
+    { icon: Map, title: 'Guides & Frameworks', count: '15 guides', desc: 'Step-by-step resources', path: '/guides', gradient: 'from-amber-400/15 to-orange-600/10' },
   ];
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -172,7 +172,7 @@ export default function HomePage() {
         <p className="text-muted-foreground mb-8">New episodes every Tuesday & Thursday</p>
         <div className="rounded-xl border border-border bg-card p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-primary/30 to-purple-600/20 flex items-center justify-center shrink-0">
+            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-primary/30 to-amber-600/20 flex items-center justify-center shrink-0">
               <Music className="w-8 h-8 text-primary" />
             </div>
             <div>
