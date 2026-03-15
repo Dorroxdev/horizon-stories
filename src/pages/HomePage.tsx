@@ -172,7 +172,7 @@ export default function HomePage() {
         <p className="text-muted-foreground mb-8">New episodes every Tuesday & Thursday</p>
         <div className="rounded-xl border border-border bg-card p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-primary/30 to-purple-600/20 flex items-center justify-center shrink-0">
+            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-primary/30 to-amber-600/20 flex items-center justify-center shrink-0">
               <Music className="w-8 h-8 text-primary" />
             </div>
             <div>
