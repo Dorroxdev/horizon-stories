@@ -107,7 +107,7 @@ export default function CaseStudiesPage() {
         <Link to={`/case-studies/${featured.slug}`} className="block mb-10 group">
             <div className="rounded-xl border-2 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5 p-6 md:p-8 hover:border-primary/40 transition-all">
               <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-2xl font-bold text-foreground/70 shrink-0">
+                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-2xl font-bold text-foreground/70 shrink-0">
                   {featured.founderName.split(' ').map((n) => n[0]).join('')}
                 </div>
                 <div className="flex-1 min-w-0">
