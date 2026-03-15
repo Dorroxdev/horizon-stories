@@ -77,7 +77,7 @@ export default function CaseStudyDetailPage() {
           </motion.h1>
 
           <div className="flex items-center gap-4 mb-6 flex-wrap">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-sm font-bold text-foreground/70">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-sm font-bold text-foreground/70">
               {cs.founderName.split(' ').map(n => n[0]).join('')}
             </div>
             <div>
