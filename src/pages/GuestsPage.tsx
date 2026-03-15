@@ -26,7 +26,7 @@ export default function GuestsPage() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filtered.map(g => (
           <Link to={`/stories/${g.storySlug}`} key={g.id} className="rounded-xl border border-border bg-card p-5 hover:border-primary/30 transition-all hover:-translate-y-0.5 text-center">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-lg font-bold text-foreground/70 mx-auto mb-3">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-lg font-bold text-foreground/70 mx-auto mb-3">
               {g.name.split(' ').map(n => n[0]).join('')}
             </div>
             <p className="font-semibold text-sm">{g.name}</p>

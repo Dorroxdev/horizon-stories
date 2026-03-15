@@ -18,7 +18,7 @@ export default function PodcastPage() {
     <div className="container mx-auto px-4 lg:px-8 py-16">
       {/* Hero */}
       <div className="flex flex-col md:flex-row gap-8 items-center mb-16">
-        <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl bg-gradient-to-br from-primary/30 to-amber-600/20 flex items-center justify-center shrink-0 border border-border">
+        <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center shrink-0 border border-border">
           <Music className="w-16 h-16 text-primary" />
         </div>
         <div>
