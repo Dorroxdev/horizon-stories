@@ -284,7 +284,7 @@ export default function CaseStudyDetailPage() {
             {/* Founder Bio */}
             <section className="my-12 rounded-xl border border-border bg-card p-6">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-muted flex items-center justify-center text-lg font-bold text-foreground/70 shrink-0">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/30 to-nessie/20 flex items-center justify-center text-lg font-bold text-foreground/70 shrink-0">
                   {cs.founderName.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
