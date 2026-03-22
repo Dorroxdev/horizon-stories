@@ -1,25 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Rocket, Search } from 'lucide-react';
+import { Menu, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
 const navLinks = [
-  { label: 'Stories', path: '/stories' },
-  { label: 'Case Studies', path: '/case-studies' },
-  { label: 'Failures', path: '/failures' },
-  { label: 'Playbooks', path: '/playbooks' },
-  { label: 'Guides', path: '/guides' },
-  { label: 'Podcast', path: '/podcast' },
-  { label: 'Newsletter', path: '/newsletter' },
+  { label: 'Home', path: '/' },
+  { label: 'Resources', path: '/resources' },
 ];
 
-interface NavbarProps {
-  onSearchOpen: () => void;
-  onSubscribeOpen: () => void;
-}
-
-export default function Navbar({ onSearchOpen, onSubscribeOpen }: NavbarProps) {
+export default function SimpleNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -28,6 +18,15 @@ export default function Navbar({ onSearchOpen, onSubscribeOpen }: NavbarProps) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSubscribeClick = () => {
+    const newsletterSection = document.getElementById('newsletter');
+    if (newsletterSection) {
+      newsletterSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = '/#newsletter';
+    }
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-strong shadow-lg' : 'bg-transparent'}`}>
@@ -54,18 +53,12 @@ export default function Navbar({ onSearchOpen, onSubscribeOpen }: NavbarProps) {
         </div>
 
         <div className="hidden lg:flex items-center gap-2">
-          <Button variant="ghost" size="icon" onClick={onSearchOpen} aria-label="Search">
-            <Search className="w-4 h-4" />
-          </Button>
-          <Button size="sm" onClick={onSubscribeOpen} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button size="sm" onClick={handleSubscribeClick} className="bg-primary hover:bg-primary/90 text-primary-foreground">
             Subscribe
           </Button>
         </div>
 
-        <div className="lg:hidden flex items-center gap-2">
-          <Button variant="ghost" size="icon" onClick={onSearchOpen} aria-label="Search">
-            <Search className="w-4 h-4" />
-          </Button>
+        <div className="lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Menu">
@@ -89,7 +82,7 @@ export default function Navbar({ onSearchOpen, onSubscribeOpen }: NavbarProps) {
                   </SheetClose>
                 ))}
                 <SheetClose asChild>
-                  <Button onClick={onSubscribeOpen} className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Button onClick={handleSubscribeClick} className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground">
                     Subscribe
                   </Button>
                 </SheetClose>
