@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { Rocket } from 'lucide-react';
 import SimpleNavbar from './SimpleNavbar';
 
 interface SimpleLayoutProps {
@@ -16,7 +15,7 @@ export default function SimpleLayout({ children }: SimpleLayoutProps) {
         <div className="container mx-auto px-4 lg:px-8 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-2 font-display font-bold text-sm">
-              <Rocket className="w-4 h-4 text-primary" />
+              <img src="/logo-nav.svg" alt="Horizon Launchpad" className="w-4 h-7" />
               <span>Horizon Launchpad</span>
             </Link>
             <p className="text-sm text-muted-foreground">

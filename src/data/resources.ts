@@ -34,17 +34,17 @@ export const resources: Resource[] = [
     slug: 'saas-validation-toolkit',
     title: 'SaaS Validation Toolkit',
     category: 'toolkit',
-    tagline: 'Validate any idea in 30 days — no code required',
+    tagline: 'Validate any idea in 30 days. No code required',
     description:
       '7 fill-in-the-blank templates for a data-backed GO or NO-GO decision.',
-    headline: 'Validate Any SaaS Idea in 30 Days — Without Writing Code',
+    headline: 'Validate Any SaaS Idea in 30 Days Without Writing Code',
     subheadline:
       '7 fill-in-the-blank templates that take a SaaS idea from "I think this could work" to a data-backed GO or NO-GO decision. No coding. No guessing.',
     problem: {
       stat: '60%',
       text: 'of SaaS products fail because nobody validated the idea first.',
       detail:
-        "Not because the code was bad. Not because the market was too crowded. Because the founder skipped the part where real people confirm the problem is worth solving — and that they'd actually pay for a solution.",
+        "Not because the code was bad. Not because the market was too crowded. Because the founder skipped the part where real people confirm the problem is worth solving, and that they'd actually pay for a solution.",
     },
     whatsInside: [
       {
@@ -95,7 +95,7 @@ export const resources: Resource[] = [
       },
     ],
     socialProof:
-      'Built by Altan Doyran — operator, product builder, and founder of Horizon Launchpad. Based on patterns from dozens of founder conversations and real validation cycles.',
+      'Built by Altan Doyran, operator, product builder, and founder of Horizon Launchpad. Based on patterns from dozens of founder conversations and real validation cycles.',
     downloadUrl:
       'https://drive.google.com/uc?export=download&id=1uT19nq1z4X-DJ2Njmx6mD5xogGBcoUu1',
   },

@@ -48,7 +48,7 @@ export default function ResourceThankYouPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <section className="relative min-h-[80vh] flex items-center hero-mesh overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
           <motion.div
@@ -104,7 +104,7 @@ export default function ResourceThankYouPage() {
               />
               <p className="text-sm text-muted-foreground">
                 Check your inbox for a welcome email. Every week, you'll get
-                founder stories, expert frameworks, and new resources —
+                founder stories, expert frameworks, and new resources
                 delivered straight to your inbox.
               </p>
             </motion.div>

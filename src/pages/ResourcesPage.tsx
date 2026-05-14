@@ -14,7 +14,7 @@ import {
   categoryLabels,
   type ResourceCategory,
 } from '@/data/resources';
-import BeehiivEmbed from '@/components/shared/BeehiivEmbed';
+import SubscribeForm from '@/components/shared/SubscribeForm';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -39,7 +39,7 @@ const categoryIcons: Record<ResourceCategory, typeof FileText> = {
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Hero */}
       <section className="relative hero-mesh overflow-hidden py-24 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -69,7 +69,7 @@ export default function ResourcesPage() {
               className="text-lg text-muted-foreground max-w-2xl mx-auto"
             >
               Actionable resources from founders, operators, and domain experts.
-              Subscribe to get instant access — no fluff, no paywalls.
+              Subscribe to get instant access. No fluff, no paywalls.
             </motion.p>
           </motion.div>
         </div>
@@ -165,7 +165,7 @@ export default function ResourcesPage() {
               frameworks, and early access to new resources.
             </motion.p>
             <motion.div variants={fadeUp} custom={2}>
-              <BeehiivEmbed className="max-w-md mx-auto" />
+              <SubscribeForm className="max-w-md mx-auto" />
             </motion.div>
           </motion.div>
         </div>

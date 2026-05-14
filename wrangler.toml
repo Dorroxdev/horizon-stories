@@ -1,0 +1,6 @@
+name = "horizon-launchpad"
+compatibility_date = "2024-01-01"
+
+# BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID are set via:
+# - Cloudflare Pages dashboard (production)
+# - .dev.vars file (local development)

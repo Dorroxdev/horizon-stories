@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { resources } from '@/data/resources';
-import BeehiivEmbed from '@/components/shared/BeehiivEmbed';
+import SubscribeForm from '@/components/shared/SubscribeForm';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -32,7 +32,7 @@ const contentPillars = [
   {
     icon: Rocket,
     title: 'Founder Stories',
-    desc: 'In-depth interviews with real revenue numbers — how they started, scaled, failed, and pivoted.',
+    desc: 'In-depth interviews with real revenue numbers. How they started, scaled, failed, and pivoted.',
     gradient: 'from-primary/20 to-nessie/10',
   },
   {
@@ -44,7 +44,7 @@ const contentPillars = [
   {
     icon: Brain,
     title: 'AI Strategy',
-    desc: 'Applied AI from a practitioner who actually builds — not just commentary.',
+    desc: 'Applied AI from a practitioner who actually builds. Not just commentary.',
     gradient: 'from-info/15 to-primary/10',
   },
   {
@@ -70,7 +70,7 @@ export default function HorizonHome() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Hero — Future Pacing + Authority */}
       <section className="relative min-h-[85vh] flex items-center hero-mesh overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
@@ -96,7 +96,7 @@ export default function HorizonHome() {
               className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8"
             >
               In-depth interviews, failure post-mortems, expert playbooks,
-              and AI strategy — with real revenue numbers. Free resources and
+              and AI strategy with real revenue numbers. Free resources and
               weekly insights from founders, operators, and leaders who lived it.
             </motion.p>
             <motion.div
@@ -180,7 +180,7 @@ export default function HorizonHome() {
           >
             No generic frameworks. No recycled LinkedIn takes. Horizon Launchpad
             brings you unfiltered stories from founders, product leaders, and
-            operators — with real revenue numbers, real failures, and the real
+            operators with real revenue numbers, real failures, and the real
             playbooks that worked.
           </motion.p>
         </motion.div>
@@ -207,7 +207,7 @@ export default function HorizonHome() {
               className="text-muted-foreground mb-10 max-w-2xl"
             >
               Multi-format content across video interviews, podcasts, written
-              case studies, and actionable guides — all free.
+              case studies, and actionable guides. All free.
             </motion.p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {contentPillars.map((pillar, i) => (
@@ -247,7 +247,7 @@ export default function HorizonHome() {
                 custom={0}
                 className="inline-block px-3 py-1 rounded-full bg-nessie/20 text-nessie text-xs font-semibold uppercase tracking-wider mb-4"
               >
-                Featured Resource — Free
+                Featured Resource / Free
               </motion.span>
               <motion.h2
                 variants={fadeUp}
@@ -334,10 +334,10 @@ export default function HorizonHome() {
               className="text-muted-foreground mb-8"
             >
               Founder stories, expert playbooks, AI strategy, and actionable
-              frameworks — from people who actually built it. Free, always.
+              frameworks from people who actually built it. Free, always.
             </motion.p>
             <motion.div variants={fadeUp} custom={2}>
-              <BeehiivEmbed className="max-w-md mx-auto" />
+              <SubscribeForm className="max-w-md mx-auto" />
             </motion.div>
             <motion.p
               variants={fadeUp}
@@ -350,34 +350,6 @@ export default function HorizonHome() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border py-12">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Rocket className="w-5 h-5 text-primary" />
-              <span className="font-display font-bold">Horizon Launchpad</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Real stories from the people building the future.
-            </p>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <Link
-                to="/resources"
-                className="hover:text-foreground transition-colors"
-              >
-                Resources
-              </Link>
-              <Link
-                to="/legacy"
-                className="hover:text-foreground transition-colors"
-              >
-                Full Site
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

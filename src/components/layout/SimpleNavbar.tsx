@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Rocket } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
@@ -32,7 +32,7 @@ export default function SimpleNavbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-strong shadow-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
         <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg tracking-tight">
-          <Rocket className="w-5 h-5 text-primary" />
+          <img src="/logo-nav.svg" alt="Horizon Launchpad" className="w-5 h-9" />
           <span>Horizon Launchpad</span>
         </Link>
 

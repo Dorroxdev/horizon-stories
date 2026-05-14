@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   CheckCircle2,
@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getResourceBySlug, categoryLabels } from '@/data/resources';
-import BeehiivEmbed from '@/components/shared/BeehiivEmbed';
+import SubscribeForm from '@/components/shared/SubscribeForm';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -31,6 +31,7 @@ const audienceIcons = [User2, Code, Briefcase, Repeat2];
 
 export default function ResourceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const resource = slug ? getResourceBySlug(slug) : undefined;
 
   if (!resource) {
@@ -55,7 +56,7 @@ export default function ResourceDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center hero-mesh overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8 py-24 lg:py-32 relative z-10">
@@ -156,7 +157,7 @@ export default function ResourceDetailPage() {
             className="text-muted-foreground mb-10 max-w-2xl mx-auto text-center"
           >
             {resource.whatsInside.length} templates designed to give structure to
-            the messiest part of building — validating the idea before you
+            the messiest part of building: validating the idea before you
             commit.
           </motion.p>
           <div className="max-w-2xl mx-auto space-y-4">
@@ -262,15 +263,15 @@ export default function ResourceDetailPage() {
               custom={1}
               className="text-muted-foreground mb-8"
             >
-              Subscribe to Horizon Launchpad to unlock this resource — plus
+              Subscribe to Horizon Launchpad to unlock this resource, plus
               weekly founder stories and frameworks delivered to your inbox.
             </motion.p>
 
-            {/* Gate: Beehiiv Embed — redirects to thank-you page after subscribe */}
             <motion.div variants={fadeUp} custom={2} className="mb-6">
-              <BeehiivEmbed
+              <SubscribeForm
                 className="max-w-md mx-auto"
-                redirectUrl={`${window.location.origin}/resources/${resource.slug}/thank-you`}
+                buttonText="Get Free Access"
+                onSuccess={() => navigate(`/resources/${resource.slug}/thank-you`)}
               />
             </motion.div>
 
