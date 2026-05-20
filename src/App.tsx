@@ -11,6 +11,7 @@ const HorizonHome = lazy(() => import("./pages/HorizonHome"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const ResourceDetailPage = lazy(() => import("./pages/ResourceDetailPage"));
 const ResourceThankYouPage = lazy(() => import("./pages/ResourceThankYouPage"));
+const PostsPage = lazy(() => import("./pages/PostsPage"));
 const SimpleLayout = lazy(() => import("./components/layout/SimpleLayout"));
 
 const queryClient = new QueryClient();
@@ -65,6 +66,16 @@ const App = () => (
                 <Suspense fallback={<LoadingFallback />}>
                   <SimpleLayout>
                     <ResourceThankYouPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <PostsPage />
                   </SimpleLayout>
                 </Suspense>
               }
