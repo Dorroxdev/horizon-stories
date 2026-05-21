@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import PostDetailPage from '../PostDetailPage';
 import * as postsLib from '@/lib/posts';
@@ -143,5 +143,122 @@ describe('PostDetailPage — not-found / fallback states', () => {
     // Both hero AND footer should now read "Back to all posts" and point to /posts
     expect(backLinks.length).toBeGreaterThanOrEqual(2);
     expect(backLinks[0].getAttribute('href')).toBe('/posts');
+  });
+});
+
+describe('PostDetailPage — CTA wiring (plan 02-04)', () => {
+  it('renders ResourceCTA when relatedResource is set (AC-3a.1)', () => {
+    // hello-world fixture has relatedResource: "saas-validation-toolkit"
+    renderAt('/posts/hello-world');
+    expect(screen.getByText('Want the toolkit I reference?')).toBeInTheDocument();
+    const link = screen.getByRole('link', { name: /Get free access/i });
+    expect(link.getAttribute('href')).toBe('/resources/saas-validation-toolkit');
+  });
+
+  it('does NOT render ResourceCTA when relatedResource is undefined (AC-3a.2)', () => {
+    const realPost = postsLib.getPostBySlug('hello-world');
+    expect(realPost).toBeDefined();
+    vi.spyOn(postsLib, 'getPostBySlug').mockReturnValue({
+      ...realPost!,
+      relatedResource: undefined,
+    });
+    renderAt('/posts/hello-world');
+    expect(screen.queryByText('Want the toolkit I reference?')).toBeNull();
+    expect(screen.queryByRole('link', { name: /Get free access/i })).toBeNull();
+    // PostSubscribeCTA still renders
+    expect(screen.getByText('Get founder stories like this every week.')).toBeInTheDocument();
+  });
+
+  it('handles bogus relatedResource slug without crashing (AC-3a.3)', () => {
+    const realPost = postsLib.getPostBySlug('hello-world');
+    vi.spyOn(postsLib, 'getPostBySlug').mockReturnValue({
+      ...realPost!,
+      relatedResource: 'bogus-slug-not-in-resources',
+    });
+    const err = vi.spyOn(console, 'error').mockImplementation(() => {});
+    renderAt('/posts/hello-world');
+    // ResourceCTA returns null silently
+    expect(screen.queryByText('Want the toolkit I reference?')).toBeNull();
+    // PostSubscribeCTA still renders
+    expect(screen.getByText('Get founder stories like this every week.')).toBeInTheDocument();
+    const ourErr = err.mock.calls.filter(
+      (args) => !String(args[0] ?? '').includes('React Router'),
+    );
+    expect(ourErr).toHaveLength(0);
+  });
+
+  it('renders PostSubscribeCTA exactly once with default copy (AC-3b.1, 3b.3, 3b.5)', () => {
+    renderAt('/posts/hello-world');
+    const matches = screen.getAllByText('Get founder stories like this every week.');
+    expect(matches).toHaveLength(1);
+  });
+
+  it('footer DOM order: ResourceCTA → ShareButtons → AuthorBio → PostSubscribeCTA → Back link (AC-3a.4, 3b.4)', () => {
+    const { container } = renderAt('/posts/hello-world');
+    // Anchor: find ResourceCTA (by tagline text), ShareButtons (twitter link), AuthorBio full block, PostSubscribeCTA (h2 text), Back link
+    const resourceCTA = screen.getByText('Want the toolkit I reference?').closest('div');
+    const twitterLink = screen.getByRole('link', { name: 'Share on Twitter' });
+    const authorBioFull = container.querySelector('div.border-t.border-border.pt-8.mt-12');
+    const subscribeCTAHeading = screen.getByText('Get founder stories like this every week.');
+    const backLink = screen.getByRole('link', { name: /Back to all posts/i });
+
+    expect(resourceCTA).not.toBeNull();
+    expect(authorBioFull).not.toBeNull();
+
+    // Helper: returns the index in document order (lower = earlier)
+    const pos = (node: Node) => {
+      let idx = 0;
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_ELEMENT);
+      let cur: Node | null = walker.nextNode();
+      while (cur) {
+        if (cur === node) return idx;
+        idx++;
+        cur = walker.nextNode();
+      }
+      return -1;
+    };
+    expect(pos(resourceCTA!)).toBeLessThan(pos(twitterLink));
+    expect(pos(twitterLink)).toBeLessThan(pos(authorBioFull!));
+    expect(pos(authorBioFull!)).toBeLessThan(pos(subscribeCTAHeading));
+    expect(pos(subscribeCTAHeading)).toBeLessThan(pos(backLink));
+  });
+
+  it('CTAs are NOT descendants of <article class*="prose"> (AC-3c.1)', () => {
+    const { container } = renderAt('/posts/hello-world');
+    const proseArticle = container.querySelector('article.prose');
+    expect(proseArticle).not.toBeNull();
+    // ResourceCTA tagline text
+    const resourceTagline = screen.getByText('Want the toolkit I reference?');
+    expect(proseArticle!.contains(resourceTagline)).toBe(false);
+    // PostSubscribeCTA heading
+    const subscribeCTA = screen.getByText('Get founder stories like this every week.');
+    expect(proseArticle!.contains(subscribeCTA)).toBe(false);
+  });
+
+  it('PostSubscribeCTA POST body contains source="post-<slug>" (AC-3b.2)', async () => {
+    const originalFetch = globalThis.fetch;
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true }),
+    });
+    globalThis.fetch = fetchMock as unknown as typeof globalThis.fetch;
+
+    try {
+      renderAt('/posts/hello-world');
+      const input = screen.getByPlaceholderText(/enter your email/i) as HTMLInputElement;
+      fireEvent.change(input, { target: { value: 'a@b.co' } });
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: /subscribe/i }));
+      });
+      await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+      const call = fetchMock.mock.calls[fetchMock.mock.calls.length - 1];
+      const init = call?.[1] as RequestInit;
+      const body = JSON.parse(init.body as string) as Record<string, unknown>;
+      expect(body.source).toBe('post-hello-world');
+      expect(body.email).toBe('a@b.co');
+    } finally {
+      globalThis.fetch = originalFetch;
+    }
   });
 });

@@ -269,6 +269,7 @@ export default function ResourceDetailPage() {
 
             <motion.div variants={fadeUp} custom={2} className="mb-6">
               <SubscribeForm
+                source={`resource-${resource.slug}`}
                 className="max-w-md mx-auto"
                 buttonText="Get Free Access"
                 onSuccess={() => navigate(`/resources/${resource.slug}/thank-you`)}

@@ -9,6 +9,8 @@ import { AuthorBio } from '@/components/posts/AuthorBio';
 import { ReadingTime } from '@/components/posts/ReadingTime';
 import { ShareButtons } from '@/components/posts/ShareButtons';
 import { Callout } from '@/components/posts/Callout';
+import { ResourceCTA } from '@/components/posts/ResourceCTA';
+import { PostSubscribeCTA } from '@/components/posts/PostSubscribeCTA';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -107,12 +109,16 @@ export default function PostDetailPage() {
       </section>
 
       <section className="container mx-auto px-4 lg:px-8 pt-12 pb-32 max-w-3xl">
+        {post.relatedResource && (
+          <ResourceCTA resourceSlug={post.relatedResource} />
+        )}
         <ShareButtons title={post.title} url={absoluteUrl} className="mt-8" />
         <AuthorBio
           variant="full"
           authorName={post.authorName}
           authorBio={post.authorBio}
         />
+        <PostSubscribeCTA postSlug={post.slug} />
         <div className="mt-12 pt-8 border-t border-border">
           <Link
             to="/posts"

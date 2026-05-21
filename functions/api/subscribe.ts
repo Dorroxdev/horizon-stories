@@ -5,6 +5,7 @@ interface Env {
 
 interface SubscribeRequest {
   email: string;
+  source?: string;
 }
 
 const corsHeaders: Record<string, string> = {
@@ -47,6 +48,20 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return jsonResponse({ error: 'Please enter a valid email address' }, 400);
   }
 
+  const source =
+    typeof body.source === 'string' && body.source.length > 0
+      ? body.source.slice(0, 100)
+      : undefined;
+
+  const beehiivBody: Record<string, unknown> = {
+    email,
+    reactivate_existing: true,
+    send_welcome_email: true,
+  };
+  if (source) {
+    beehiivBody.utm_source = source;
+  }
+
   try {
     const res = await fetch(
       `https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`,
@@ -56,11 +71,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           Authorization: `Bearer ${BEEHIIV_API_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email,
-          reactivate_existing: true,
-          send_welcome_email: true,
-        }),
+        body: JSON.stringify(beehiivBody),
       },
     );
 
