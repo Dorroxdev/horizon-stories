@@ -12,6 +12,7 @@ const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const ResourceDetailPage = lazy(() => import("./pages/ResourceDetailPage"));
 const ResourceThankYouPage = lazy(() => import("./pages/ResourceThankYouPage"));
 const PostsPage = lazy(() => import("./pages/PostsPage"));
+const PostDetailPage = lazy(() => import("./pages/PostDetailPage"));
 const SimpleLayout = lazy(() => import("./components/layout/SimpleLayout"));
 
 const queryClient = new QueryClient();
@@ -76,6 +77,16 @@ const App = () => (
                 <Suspense fallback={<LoadingFallback />}>
                   <SimpleLayout>
                     <PostsPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/posts/:slug"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <PostDetailPage />
                   </SimpleLayout>
                 </Suspense>
               }

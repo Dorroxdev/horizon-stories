@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { parsePost, sortByPublishedAtDesc, getAllPosts } from '../posts';
+import { parsePost, sortByPublishedAtDesc, getAllPosts, getPostBySlug, extractBodyText } from '../posts';
+import { countWords, readingTimeMinutes } from '../reading-time';
 
 const validBase = {
   title: 'A reasonable title',
@@ -78,5 +79,39 @@ describe('integration: real MDX glob', () => {
     expect(stub?.title).toContain('Hello, world');
     expect(stub?.pillar).toBe('founder-stories');
     expect(stub?.relatedResource).toBe('saas-validation-toolkit');
+  });
+
+  it('computes wordCount > 50 and readingTime >= 1 from the raw MDX body', () => {
+    const post = getPostBySlug('hello-world');
+    expect(post).toBeDefined();
+    expect(post!.wordCount).toBeGreaterThan(50);
+    expect(post!.readingTime).toBeGreaterThanOrEqual(1);
+  });
+});
+
+describe('extractBodyText helper', () => {
+  it('strips YAML frontmatter', () => {
+    const fixture = '---\nfoo: bar\n---\nactual body words here';
+    const text = extractBodyText(fixture);
+    expect(text).toContain('actual body words here');
+    expect(text).not.toContain('foo: bar');
+  });
+
+  it('strips JSX tags so the words inside callouts still count', () => {
+    const fixture = '<Callout>Hello world</Callout>';
+    const text = extractBodyText(fixture);
+    expect(countWords(text)).toBe(2);
+  });
+
+  it('strips top-level import lines', () => {
+    const fixture = "import X from 'y';\nReal content here";
+    const text = extractBodyText(fixture);
+    expect(text.trim()).toBe('Real content here');
+  });
+
+  it('handles empty input as empty string', () => {
+    expect(extractBodyText('')).toBe('');
+    expect(countWords('')).toBe(0);
+    expect(readingTimeMinutes('')).toBeGreaterThanOrEqual(1);
   });
 });

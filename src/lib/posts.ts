@@ -2,7 +2,7 @@ import type { ComponentType } from 'react';
 import { z } from 'zod';
 import { pillarSlugs } from '@/data/pillars';
 import { resources } from '@/data/resources';
-import { readingTimeMinutes } from './reading-time';
+import { countWords, readingTimeMinutes } from './reading-time';
 
 const validResourceSlugs = new Set(resources.map((r) => r.slug));
 
@@ -51,6 +51,23 @@ const rawModules = import.meta.glob<RawMdxModule>(
   { eager: true }
 );
 
+const rawSources = import.meta.glob<string>(
+  '/src/content/posts/*.mdx',
+  { eager: true, query: '?raw', import: 'default' }
+);
+
+/**
+ * Strip MDX frontmatter, import lines, and JSX tags so word-count reflects
+ * only the prose body. Empty input returns ''. See AC-1e.3 / AC-1e.4.
+ */
+export function extractBodyText(rawSource: unknown): string {
+  if (typeof rawSource !== 'string' || !rawSource) return '';
+  const withoutFrontmatter = rawSource.replace(/^---[\s\S]*?---\n/, '');
+  return withoutFrontmatter
+    .replace(/^import\s.+$/gm, '')
+    .replace(/<[^>]+>/g, ' ');
+}
+
 function loadPosts(): Post[] {
   const seen = new Set<string>();
   const posts: Post[] = [];
@@ -64,8 +81,10 @@ function loadPosts(): Post[] {
       throw new Error(`[posts] Duplicate slug "${fm.slug}" in ${filePath}`);
     }
     seen.add(fm.slug);
-    const wordCount = 0;
-    const readingTime = Math.max(3, readingTimeMinutes(fm.excerpt));
+    const rawSource = rawSources[filePath] ?? '';
+    const text = extractBodyText(rawSource);
+    const wordCount = countWords(text);
+    const readingTime = readingTimeMinutes(text);
     posts.push({
       ...fm,
       body: mod.default,
