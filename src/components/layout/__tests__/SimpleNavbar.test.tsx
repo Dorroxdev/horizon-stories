@@ -23,52 +23,34 @@ function desktopLinks() {
 }
 
 describe('SimpleNavbar', () => {
-  it('renders 3 nav links in desktop: Home, Posts, Resources', () => {
+  it('renders 2 nav links in desktop: Home, Resources (Posts tab hidden 2026-05-22)', () => {
     renderNav('/');
     const links = desktopLinks();
-    expect(links.length).toBe(3);
+    expect(links.length).toBe(2);
     expect(links[0].textContent).toBe('Home');
     expect(links[0].getAttribute('href')).toBe('/');
-    expect(links[1].textContent).toBe('Posts');
-    expect(links[1].getAttribute('href')).toBe('/posts');
-    expect(links[2].textContent).toBe('Resources');
-    expect(links[2].getAttribute('href')).toBe('/resources');
+    expect(links[1].textContent).toBe('Resources');
+    expect(links[1].getAttribute('href')).toBe('/resources');
   });
 
-  it('highlights Posts link at /posts (and not Home or Resources)', () => {
-    renderNav('/posts');
-    const [home, posts, resources] = desktopLinks();
-    expect(posts.className).toContain('text-primary');
-    expect(posts.className).toContain('bg-primary/10');
-    expect(home.className).not.toContain('bg-primary/10');
-    expect(resources.className).not.toContain('bg-primary/10');
-  });
-
-  it('highlights Posts link at /posts/hello-world (prefix match)', () => {
-    renderNav('/posts/hello-world');
-    const [, posts] = desktopLinks();
-    expect(posts.className).toContain('text-primary');
-    expect(posts.className).toContain('bg-primary/10');
-  });
-
-  it('does NOT highlight Posts link at /post-anything (false-positive guard)', () => {
-    renderNav('/post-anything');
-    const [, posts] = desktopLinks();
-    expect(posts.className).not.toContain('bg-primary/10');
+  it('does NOT render a Posts link in the desktop nav (temporarily hidden)', () => {
+    renderNav('/');
+    const links = desktopLinks();
+    expect(links.find((l) => l.textContent === 'Posts')).toBeUndefined();
+    expect(links.find((l) => l.getAttribute('href') === '/posts')).toBeUndefined();
   });
 
   it('does NOT highlight Resources link at /resources-archive (false-positive guard)', () => {
     renderNav('/resources-archive');
-    const [, , resources] = desktopLinks();
+    const [, resources] = desktopLinks();
     expect(resources.className).not.toContain('bg-primary/10');
   });
 
   it('highlights Home link only at /', () => {
     renderNav('/');
-    const [home, posts, resources] = desktopLinks();
+    const [home, resources] = desktopLinks();
     expect(home.className).toContain('text-primary');
     expect(home.className).toContain('bg-primary/10');
-    expect(posts.className).not.toContain('bg-primary/10');
     expect(resources.className).not.toContain('bg-primary/10');
   });
 
@@ -86,16 +68,15 @@ describe('SimpleNavbar', () => {
 
   it('highlights Resources at /resources', () => {
     renderNav('/resources');
-    const [home, posts, resources] = desktopLinks();
+    const [home, resources] = desktopLinks();
     expect(resources.className).toContain('text-primary');
     expect(resources.className).toContain('bg-primary/10');
     expect(home.className).not.toContain('bg-primary/10');
-    expect(posts.className).not.toContain('bg-primary/10');
   });
 
   it('highlights Resources at /resources/some-slug (regression)', () => {
     renderNav('/resources/getting-started');
-    const [, , resources] = desktopLinks();
+    const [, resources] = desktopLinks();
     expect(resources.className).toContain('text-primary');
     expect(resources.className).toContain('bg-primary/10');
   });

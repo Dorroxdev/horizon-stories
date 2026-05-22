@@ -6,7 +6,9 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/s
 
 const navLinks = [
   { label: 'Home', path: '/' },
-  { label: 'Posts', path: '/posts' },
+  // Posts tab temporarily hidden (2026-05-22) — author will re-activate when
+  // posts are personalized post-launch. Routes /posts and /posts/:slug remain
+  // accessible by direct URL. Restore: { label: 'Posts', path: '/posts' }
   { label: 'Resources', path: '/resources' },
 ];
 
