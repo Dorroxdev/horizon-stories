@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "5-ai-workflows-founders-actually-use",
+    "title": "5 AI workflows that actually save founder time",
+    "excerpt": "Most AI-for-founders content is theater. These are the five workflows I actually use weekly. Not the ones I tried once and tweeted about.",
+    "publishedAt": "2026-05-24",
+    "pillar": "ai-strategy",
+    "pillarLabel": "AI Strategy"
+  },
+  {
+    "slug": "6-month-founder-retrospective-what-id-build-differently",
+    "title": "What I'd build differently next time. A 6-month founder retrospective.",
+    "excerpt": "Six months in. Here are the six things I'd build differently if I were starting today, written down before they get sanitized by hindsight.",
+    "publishedAt": "2026-05-25",
+    "pillar": "failure-post-mortems",
+    "pillarLabel": "Failure Post-Mortems"
+  },
+  {
+    "slug": "building-horizon-launchpad-in-public",
+    "title": "Why I'm building Horizon Launchpad in public",
+    "excerpt": "Most founder stories you read are the sanitized retrospective. The real insight is in the messy middle. Horizon Launchpad is my attempt to ship the messy middle.",
+    "publishedAt": "2026-05-22",
+    "pillar": "founder-stories",
+    "pillarLabel": "Founder Stories"
+  },
+  {
+    "slug": "newsletter-first-launch-what-worked-what-flopped",
+    "title": "The newsletter-first product launch. What worked, what flopped.",
+    "excerpt": "I shipped a product to a list of [N] readers before opening any signup form. The newsletter-first launch is back in fashion, but most write-ups skip the parts that didn't work. Here's the full ledger.",
+    "publishedAt": "2026-05-23",
+    "pillar": "expert-playbooks",
+    "pillarLabel": "Expert Playbooks"
+  }
+]

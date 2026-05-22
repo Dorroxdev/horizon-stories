@@ -18,6 +18,7 @@ interface SubscribeFormProps {
   onSuccess?: () => void;
   successMessage?: string;
   buttonText?: string;
+  source?: string;
 }
 
 export default function SubscribeForm({
@@ -25,6 +26,7 @@ export default function SubscribeForm({
   onSuccess,
   successMessage = "You're subscribed! Check your inbox.",
   buttonText = 'Subscribe',
+  source,
 }: SubscribeFormProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -46,7 +48,10 @@ export default function SubscribeForm({
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: values.email }),
+        body: JSON.stringify({
+          email: values.email,
+          ...(source ? { source } : {}),
+        }),
       });
 
       if (!res.ok) {

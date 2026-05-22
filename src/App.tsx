@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,8 @@ const HorizonHome = lazy(() => import("./pages/HorizonHome"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const ResourceDetailPage = lazy(() => import("./pages/ResourceDetailPage"));
 const ResourceThankYouPage = lazy(() => import("./pages/ResourceThankYouPage"));
+const PostsPage = lazy(() => import("./pages/PostsPage"));
+const PostDetailPage = lazy(() => import("./pages/PostDetailPage"));
 const SimpleLayout = lazy(() => import("./components/layout/SimpleLayout"));
 
 const queryClient = new QueryClient();
@@ -21,57 +24,87 @@ const LoadingFallback = () => (
 );
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <SimpleLayout>
-                  <HorizonHome />
-                </SimpleLayout>
-              </Suspense>
-            }
-          />
-          <Route
-            path="/resources"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <SimpleLayout>
-                  <ResourcesPage />
-                </SimpleLayout>
-              </Suspense>
-            }
-          />
-          <Route
-            path="/resources/:slug"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <SimpleLayout>
-                  <ResourceDetailPage />
-                </SimpleLayout>
-              </Suspense>
-            }
-          />
-          <Route
-            path="/resources/:slug/thank-you"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <SimpleLayout>
-                  <ResourceThankYouPage />
-                </SimpleLayout>
-              </Suspense>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <Helmet>
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="Horizon Launchpad"
+        href="https://horizonlaunchpad.com/feed.xml"
+      />
+    </Helmet>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <HorizonHome />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/resources"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <ResourcesPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/resources/:slug"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <ResourceDetailPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/resources/:slug/thank-you"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <ResourceThankYouPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <PostsPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route
+              path="/posts/:slug"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <SimpleLayout>
+                    <PostDetailPage />
+                  </SimpleLayout>
+                </Suspense>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

@@ -14,6 +14,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { resources } from '@/data/resources';
 import SubscribeForm from '@/components/shared/SubscribeForm';
+import { getRecentPosts } from '@/lib/posts';
+import { PillarBadge } from '@/components/posts/PillarBadge';
+import { PostSubscribeCTA } from '@/components/posts/PostSubscribeCTA';
+import type { PillarSlug } from '@/data/pillars';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -62,6 +66,89 @@ const contentPillars = [
 ];
 
 const featured = resources[0];
+
+function RecentPostsSection() {
+  const recent = getRecentPosts(3);
+  if (recent.length === 0) return null;
+
+  return (
+    <section className="container mx-auto px-4 lg:px-8 py-20">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+          <div>
+            <motion.h2
+              variants={fadeUp}
+              custom={0}
+              className="font-display font-bold text-3xl lg:text-4xl"
+            >
+              Latest posts
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              custom={1}
+              className="text-muted-foreground mt-2 max-w-xl"
+            >
+              Stories, playbooks, and frameworks for builders.
+            </motion.p>
+          </div>
+          <motion.div variants={fadeUp} custom={2}>
+            <Button asChild variant="outline">
+              <Link to="/posts">
+                See all posts
+                <ArrowRight className="w-4 h-4 ml-1" aria-hidden="true" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {recent.map((post, i) => (
+            <motion.article
+              key={post.slug}
+              variants={fadeUp}
+              custom={i + 3}
+              className="flex flex-col p-6 rounded-xl border border-border bg-card/50 hover:border-primary/40 transition-colors"
+            >
+              <PillarBadge pillar={post.pillar as PillarSlug} size="sm" className="mb-4" />
+              <h3 className="font-display font-semibold text-xl leading-tight mb-3">
+                <Link
+                  to={`/posts/${post.slug}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {post.title}
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                {post.excerpt}
+              </p>
+              <Link
+                to={`/posts/${post.slug}`}
+                className="text-primary text-sm hover:underline mt-auto inline-flex items-center gap-1"
+              >
+                Read post
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="border-t border-border pt-8 mt-12">
+          <PostSubscribeCTA
+            postSlug="home-recent-posts"
+            source="home-recent-posts"
+            headline="Get every new post"
+            description="Free, weekly. The newsletter goes out alongside each post."
+            className="bg-transparent border-none p-0 my-0"
+          />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
 
 export default function HorizonHome() {
   const scrollToNewsletter = () => {
@@ -312,6 +399,8 @@ export default function HorizonHome() {
           </motion.div>
         </section>
       )}
+
+      <RecentPostsSection />
 
       {/* Newsletter — Reciprocity + Commitment */}
       <section id="newsletter" className="relative py-24 hero-mesh">
