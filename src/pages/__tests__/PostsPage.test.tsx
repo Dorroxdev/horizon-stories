@@ -1,14 +1,17 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import PostsPage from '../PostsPage';
 import { getAllPosts, getPostsByPillar } from '@/lib/posts';
 
 function renderPage(url: string) {
   return render(
-    <MemoryRouter initialEntries={[url]}>
-      <PostsPage />
-    </MemoryRouter>,
+    <HelmetProvider>
+      <MemoryRouter initialEntries={[url]}>
+        <PostsPage />
+      </MemoryRouter>
+    </HelmetProvider>,
   );
 }
 

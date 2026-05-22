@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,6 +25,14 @@ const LoadingFallback = () => (
 
 const App = () => (
   <HelmetProvider>
+    <Helmet>
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="Horizon Launchpad"
+        href="https://horizonlaunchpad.com/feed.xml"
+      />
+    </Helmet>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />

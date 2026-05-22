@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import PostDetailPage from '../PostDetailPage';
 import * as postsLib from '@/lib/posts';
 
@@ -10,11 +11,13 @@ vi.mock('sonner', () => ({
 
 function renderAt(url: string) {
   return render(
-    <MemoryRouter initialEntries={[url]}>
-      <Routes>
-        <Route path="/posts/:slug" element={<PostDetailPage />} />
-      </Routes>
-    </MemoryRouter>,
+    <HelmetProvider>
+      <MemoryRouter initialEntries={[url]}>
+        <Routes>
+          <Route path="/posts/:slug" element={<PostDetailPage />} />
+        </Routes>
+      </MemoryRouter>
+    </HelmetProvider>,
   );
 }
 
