@@ -65,20 +65,28 @@ describe('functions/feed.xml — onRequestGet (Task 2)', () => {
     );
   });
 
-  it('body contains at least one <item> with link/guid/pubDate/category/description', async () => {
+  it('body contains valid <item> structure when manifest has items', async () => {
+    // When POSTS_HIDDEN is true (site-flags.ts), the on-disk manifest is empty
+    // and the feed has no <item> elements. The item-structure assertions only
+    // apply when posts are visible. The count-matches-manifest test below
+    // covers the empty case rigorously.
+    const manifest = (
+      await import('../../functions/_posts-manifest.json')
+    ).default as Array<{ slug: string }>;
     const res = await onRequestGet(
       makeContext() as Parameters<typeof onRequestGet>[0],
     );
     const body = await res.text();
     const itemMatches = body.match(/<item>/g) ?? [];
-    expect(itemMatches.length).toBeGreaterThanOrEqual(1);
-    // First item should have all expected child elements
-    expect(body).toMatch(/<item>[\s\S]*<title>[\s\S]*<\/title>[\s\S]*<\/item>/);
-    expect(body).toMatch(/<link>https:\/\/horizonlaunchpad\.com\/posts\//);
-    expect(body).toMatch(/<guid isPermaLink="true">/);
-    expect(body).toMatch(/<pubDate>/);
-    expect(body).toMatch(/<category>/);
-    expect(body).toMatch(/<description>/);
+    expect(itemMatches.length).toBe(manifest.length);
+    if (manifest.length > 0) {
+      expect(body).toMatch(/<item>[\s\S]*<title>[\s\S]*<\/title>[\s\S]*<\/item>/);
+      expect(body).toMatch(/<link>https:\/\/horizonlaunchpad\.com\/posts\//);
+      expect(body).toMatch(/<guid isPermaLink="true">/);
+      expect(body).toMatch(/<pubDate>/);
+      expect(body).toMatch(/<category>/);
+      expect(body).toMatch(/<description>/);
+    }
   });
 
   it('escapes XML special characters in titles (smoke check via &amp;)', async () => {

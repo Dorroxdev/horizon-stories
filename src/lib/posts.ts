@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import { z } from 'zod';
 import { pillarSlugs } from '@/data/pillars';
 import { resources } from '@/data/resources';
+import { POSTS_HIDDEN } from '@/data/site-flags';
 import { countWords, readingTimeMinutes } from './reading-time';
 
 const validResourceSlugs = new Set(resources.map((r) => r.slug));
@@ -100,17 +101,21 @@ const allPosts = loadPosts();
 const publishedPosts = allPosts.filter((p) => !p.draft);
 
 export function getAllPosts(includeDrafts = false): Post[] {
+  if (POSTS_HIDDEN) return [];
   return includeDrafts ? allPosts : publishedPosts;
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
-  return getAllPosts(true).find((p) => p.slug === slug);
+  if (POSTS_HIDDEN) return undefined;
+  return [...allPosts].find((p) => p.slug === slug);
 }
 
 export function getPostsByPillar(pillar: string): Post[] {
+  if (POSTS_HIDDEN) return [];
   return publishedPosts.filter((p) => p.pillar === pillar);
 }
 
 export function getRecentPosts(n: number): Post[] {
+  if (POSTS_HIDDEN) return [];
   return publishedPosts.slice(0, n);
 }

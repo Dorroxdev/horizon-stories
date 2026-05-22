@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 import { resources } from '../src/data/resources';
 import { pillars, type PillarSlug } from '../src/data/pillars';
+import { POSTS_HIDDEN } from '../src/data/site-flags';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -53,11 +54,16 @@ function asString(v: unknown): string {
 }
 
 function staticUrls(today: string): SitemapUrl[] {
-  return [
+  const urls: SitemapUrl[] = [
     { loc: `${SITE}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
-    { loc: `${SITE}/posts`, lastmod: today, changefreq: 'daily', priority: '0.9' },
-    { loc: `${SITE}/resources`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
   ];
+  // When the posts surface is hidden, don't index the empty /posts list page
+  // either — saves search engines from crawling an empty state.
+  if (!POSTS_HIDDEN) {
+    urls.push({ loc: `${SITE}/posts`, lastmod: today, changefreq: 'daily', priority: '0.9' });
+  }
+  urls.push({ loc: `${SITE}/resources`, lastmod: today, changefreq: 'monthly', priority: '0.8' });
+  return urls;
 }
 
 function resourceUrls(today: string): SitemapUrl[] {
@@ -139,7 +145,11 @@ ${body}
  */
 export function generateSitemap(opts: GenerateOptions): GenerateResult {
   const today = opts.today ?? new Date().toISOString().split('T')[0];
-  const { manifest, urls: postUrls } = readPostsFromDir(opts.postsDir);
+  // Site-wide POSTS_HIDDEN kill switch: when on, sitemap and manifest are
+  // emitted WITHOUT any post entries, draining RSS + sitemap together.
+  const { manifest, urls: postUrls } = POSTS_HIDDEN
+    ? { manifest: [], urls: [] }
+    : readPostsFromDir(opts.postsDir);
   const urls: SitemapUrl[] = [
     ...staticUrls(today),
     ...resourceUrls(today),
