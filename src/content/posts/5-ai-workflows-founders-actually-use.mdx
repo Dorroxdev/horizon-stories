@@ -1,0 +1,111 @@
+---
+title: "5 AI workflows that actually save founder time"
+slug: "5-ai-workflows-founders-actually-use"
+excerpt: "Most AI-for-founders content is theater. These are the five workflows I actually use weekly. Not the ones I tried once and tweeted about."
+pillar: "ai-strategy"
+publishedAt: "2026-05-24"
+authorBio: "Operator and product builder. I write about the boring middle of founder work."
+draft: false
+---
+
+Most AI-for-founders content is theater. Someone tries a prompt, gets a clever output, posts a screenshot. Three weeks later they've stopped using it.
+
+The workflows below are different. These are the five I actually use weekly. They've survived more than a quarter of real use. If I had to give up four of them, I'd be slower but still functional. If I had to give up all five, I'd need to hire someone within a month.
+
+This is the boring middle. No hot takes, no "agents will replace founders", just the specific workflow patterns that compound.
+
+## 1. Codebase-aware refactors via [primary coding tool]
+
+The single highest-ROI AI workflow for me is using [Claude Code / Cursor / your-tool-of-choice] for cross-file refactors. Not single-file edits. Cross-file.
+
+The specific pattern: I describe the refactor as a goal ("rename `getResourceBySlug` to `findResourceBySlug` and update all call sites", or "extract the auth middleware into a shared package and have both API routes import it"). The tool reads the relevant files, proposes a unified diff, I review, and ship.
+
+What this replaces: 30-60 minutes of grep, manual edits, broken-test debugging.
+What it costs: about 5 minutes of prompt-writing and review.
+ROI: roughly 10x on time, and more on cognitive load.
+
+The thing most "AI for coding" guides miss: the value isn't in the AI generating new code. It's in the AI doing the boring deterministic work (finding all call sites, updating imports, preserving formatting) faster than I can. The cleverness budget should be spent on review, not generation.
+
+<Callout type="info">
+The fastest AI workflows are usually the ones where the AI is doing search-and-substitute work at high accuracy, not the ones where the AI is being creative. Save the creativity for the human.
+</Callout>
+
+## 2. First-draft writing with a strict frame
+
+I draft most of my long-form writing (including this post) with an LLM as a first-pass partner. The workflow is:
+
+1. I write the outline myself. Five to seven bullets, including the conclusion. The outline is the post's spine; I do this without AI.
+2. I prompt the model to expand each bullet into a paragraph, with explicit voice/tone constraints ("period form, no em dashes, specific examples not generic claims, first-person").
+3. The output is a rough first draft. I then rewrite it line by line. Most of it gets replaced.
+
+The model's first draft is rarely usable as-is. But it's faster for me to react to an existing draft than to stare at a blank page. The cognitive cost of "type the next paragraph from scratch" is higher than "fix this paragraph the model produced".
+
+What this replaces: blank-page paralysis.
+What it costs: model output that's [X]% rewritten by the time I publish.
+ROI: I publish roughly [N]x more often than I did before this workflow.
+
+**The trap to avoid:** trusting the first draft. If you don't rewrite, the post sounds like an LLM, and readers can tell. The model is your assistant, not your voice.
+
+## 3. Tactical research with citation-required prompts
+
+For any decision that needs external research ("should I use Stripe or Paddle for this", "what's the current best-practice for X"), I prompt with a citation-required instruction.
+
+The pattern: "Research [QUESTION]. For every claim, include the source URL. Do not include claims without sources."
+
+This filters out the model's hallucinations. If it can't cite a source, it usually invents one (which I can verify and discard), or it omits the claim (which is the desired outcome). Either way, the output is roughly [N]x more reliable than a free-form research prompt.
+
+What this replaces: 30-60 minutes of manual Google + skim.
+What it costs: 5-10 minutes of prompt-and-verify.
+ROI: faster decisions on tooling choices, regulatory questions, market sizing. About 4x.
+
+**The trap to avoid:** trusting the citations without clicking through. Models will cite real-looking URLs that 404 or that say something different than the claim. Verify the top [N] citations before acting on them.
+
+## 4. Decision documentation in the moment
+
+When I make a non-trivial decision (pick a library, change an architecture, kill a feature), I write a short decision record. The format is:
+
+- **Context:** what we know
+- **Decision:** what we did
+- **Alternatives:** what we considered
+- **Consequences:** what to watch for
+
+I draft the decision record by talking it through with an LLM. Five minutes of voice-to-text "here's what I'm thinking" turns into a structured DEC-XXX entry that future-me can read.
+
+This is a workflow I almost didn't include because it sounds boring. But it has compounded more than any other AI use I have. Six months of decision records have prevented me from re-litigating the same questions roughly [N] times.
+
+What this replaces: re-debating settled decisions every few months.
+What it costs: 5 minutes per decision.
+ROI: continuous. Higher every quarter.
+
+## 5. Pre-flight checks before any external email or post
+
+Before sending any external email longer than three sentences, or publishing any public post, I run a pre-flight prompt:
+
+"Read this draft. Flag anything that's: unclear, vague, off-brand, in a different voice than [previous example], factually unsupported, or longer than it needs to be."
+
+The model is reliably good at this. It's catching the kind of mistakes I make when I'm tired, and it's faster than asking a human reviewer.
+
+What this replaces: the third proofread.
+What it costs: 30 seconds.
+ROI: catches about [N]% of mistakes that would have made it through unaided. Has saved me [N] embarrassing public moments this year.
+
+**The trap to avoid:** acting on every flag. The model will sometimes flag things that are intentional choices ("this is too direct"). Skim, accept the ones that land, ignore the rest.
+
+## What I do NOT use AI for
+
+Worth saying explicitly: there are categories where AI has been net-negative for me, and where I've stopped trying. The list is shorter than the list above but real:
+
+- **Strategic decisions.** The model can argue any side of a strategic question convincingly. That makes it actively unhelpful when I'm trying to think clearly about something high-stakes.
+- **Cold outreach personalization.** It produces uncanny-valley emails that recipients spot immediately. I write outreach by hand.
+- **Editing emotional content.** The model tends to soften and generalize. If I'm writing something where the specificity is the point, the model is the wrong collaborator.
+- **Initial customer interviews.** No model substitutes for the surprise of a real human telling you something you weren't expecting.
+
+## The framework, distilled
+
+The five workflows above share a pattern: the AI is doing high-accuracy, low-creativity work, and the human is doing the judgment work. When I flip that ratio (asking the model to be creative, treating the output as final), the ROI collapses.
+
+If you're starting fresh and want to pick one to try first: workflow 1 (cross-file refactors in your codebase) is probably the highest-leverage. It pays back in the first session.
+
+If you're already deep on AI workflows: workflow 4 (decision records) is the most underrated. Most founders don't write decision records at all. The ones who do, never want to go back.
+
+The compounding here is real but quiet. None of these workflows feel like a breakthrough on the day you adopt them. Six months later, the absence of them is conspicuous.

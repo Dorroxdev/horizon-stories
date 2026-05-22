@@ -1,0 +1,109 @@
+---
+title: "What I'd build differently next time. A 6-month founder retrospective."
+slug: "6-month-founder-retrospective-what-id-build-differently"
+excerpt: "Six months in. Here are the six things I'd build differently if I were starting today, written down before they get sanitized by hindsight."
+pillar: "failure-post-mortems"
+publishedAt: "2026-05-25"
+authorBio: "Operator and product builder. I write about the boring middle of founder work."
+draft: false
+---
+
+Six months in.
+
+Most retrospectives I've read get written either too early (everything is still raw, the patterns aren't visible yet) or too late (the lessons have been sanitized by hindsight into something cleaner and less useful than the lived version).
+
+This is the medium-vintage version. The patterns are visible. The wounds are mostly healed but not forgotten. Some of what I write below I'll cringe at in another six months, which is fine, that's the point.
+
+Six things I'd build differently if I were starting today.
+
+## 1. I'd ship the smaller product first
+
+The product I shipped at launch had [N] features. The product people actually paid for in the first quarter used [N-X] of those features. The remaining [X] features absorbed roughly [Y]% of build time and contributed [Z]% of revenue.
+
+If I were starting again, I'd ship with the [N-X] features that converted, and treat the rest as a roadmap, not a prerequisite. The instinct to ship "complete" is a tax on time-to-market.
+
+The harder admission: I knew this at month two. I had the data. I shipped the bigger product anyway because the bigger product felt safer, and "shipping the smaller product" required a confidence I didn't have yet.
+
+**What I'd do differently:** trust the validation data earlier. Two interviews telling me feature X doesn't matter is enough. I don't need ten.
+
+## 2. I'd pick boring infrastructure on purpose
+
+I made [N] infrastructure choices that were "interesting" rather than "boring". [SPECIFIC EXAMPLE: e.g., self-hosted instead of managed service, novel framework instead of incumbent]. Each one cost me a week of operational pain at some point.
+
+The novel-framework choice in particular cost me [X] weeks of debugging when [SPECIFIC FAILURE MODE]. The boring choice would have worked on day one and saved [X] weeks I could have spent on the actual product.
+
+The pattern: "interesting" infrastructure feels like leverage when you're picking it. By the time you realize it's a tax, you've sunk enough into it that switching costs more than absorbing the tax.
+
+**What I'd do differently:** the boring choice is the right choice unless I have a specific, written-down reason why the boring choice will fail at my scale. "It might fail at scale" doesn't count. "It will fail at scale because [specific limit] at [specific volume]" counts.
+
+<Callout type="warning">
+Founder energy is finite. Spending it on infrastructure that works is a worse trade than spending it on product that matters. The default should be: boring infrastructure plus interesting product. The inverse is a trap.
+</Callout>
+
+## 3. I'd write the brief before writing the feature
+
+Every feature I built without a written brief took longer and ended worse than the features I wrote a brief for. This is the most embarrassing item on the list because I knew the right answer from the start.
+
+The pattern: a feature idea would feel obvious enough that writing a brief seemed like ceremony. I'd start coding. Three days in, I'd realize there was a design decision I hadn't made, then another, then another. The "obvious" feature would acquire scope. By the time it shipped, it had drifted from the original idea.
+
+**What I'd do differently:** one page brief before any feature that's more than half a day's work. Sections: what problem this solves, what done looks like, what's explicitly out of scope. The "out of scope" section is the most important. Most scope creep is silent, not loud.
+
+## 4. I'd hire help for the parts I'm bad at, sooner
+
+I spent [N] weeks doing things I'm bad at because they felt cheap (I'm not paying anyone). They were not cheap. They were the most expensive things I've ever done, denominated in founder hours.
+
+The specific categories I should have hired out earlier:
+
+- [CATEGORY 1: e.g., copy editing, design review, accounting setup]
+- [CATEGORY 2]
+- [CATEGORY 3]
+
+Each one had a clear "I should hire this out" signal that I ignored for too long. The signal was: I'd been at it for three sessions, the output was still mediocre, and I'd lost more than a week of calendar time to the iteration loop.
+
+**What I'd do differently:** if I'm bad at a thing and a contractor could do it in [N] hours, the threshold for hiring is "have I lost more than [N×2] hours to this already". If yes, hire. The math is brutally simple and I refused to do it for too long.
+
+## 5. I'd publish the work earlier
+
+I waited too long to write publicly about what I was building. The reasons I told myself: "it's not ready", "I want to have results first", "I'd rather show than tell". The actual reason: I was nervous about being visible while the work was rough.
+
+The cost of waiting: I lost the opportunity to compound an audience over [N] months. The people who would have been early subscribers became people I had to acquire later, more expensively.
+
+**What I'd do differently:** publish from day one. The audience grows in proportion to time-on-the-internet, not quality-of-the-internet-presence. A mediocre weekly post for six months beats a polished monthly post for one month, every time.
+
+## 6. I'd kill experiments faster
+
+I had [N] experiments that I let run for two-to-three months past their natural expiration date. The signals were already negative by month one. I kept running them because killing an experiment feels like admitting a mistake, and starting a new one feels like admitting I don't know what to do next.
+
+The truth: killing an experiment fast is the same skill as starting one. You're acknowledging the data and reallocating the budget. That's it.
+
+**What I'd do differently:** every experiment gets a written kill criterion before it starts. "If X is not Y by date Z, this dies." Then on date Z, I look at X and either keep going or kill. No re-litigation, no "let me give it another week".
+
+This sounds bureaucratic. It is. The bureaucracy of pre-committing the kill criterion is roughly [X]% of the cost of letting a bad experiment run for an extra month.
+
+## The meta-lesson
+
+Reading back through the six items, they share a pattern. In every case, I knew the right answer at some point during the six months. I just didn't act on it.
+
+The bottleneck wasn't information. It was the courage to act on inconvenient information. Five of the six items would have been resolved if I'd been willing to do the uncomfortable thing on the first day the data was clear.
+
+That's the actual retrospective lesson. The information advantage you accumulate as a founder is large, but it's worthless unless you act on it. Most of the founder work that compounds is acting on information you already have. Not gathering more.
+
+## What's worth keeping
+
+Worth being explicit about the other side too: there are decisions I made in the first six months that I'd repeat without hesitation:
+
+- The decision to validate before building. Cost time, saved more.
+- The decision to write to a list before opening public.
+- The decision to keep the product narrow at the technical layer (even when I let it sprawl at the feature layer, see item 1).
+- The decision to ship from a small toolchain rather than picking up new tools mid-project.
+- The decision to publish the work publicly, eventually. Should have been earlier (item 5) but not "should have skipped".
+
+Most of what I did right is the inverse of what I did wrong on the six items above. The framework is the same: act on what you know, kill what doesn't work, publish the messy middle.
+
+## Closing thought
+
+If you're reading this six months into your own project, the version of yourself you'd want most is the one who's already six months into the next project. You don't have access to her. The closest substitute is publishing a retrospective like this one, then re-reading it monthly, then noticing how many of the patterns you keep repeating.
+
+I'm going to re-read this in twelve months. Some of what I wrote will look correct. Some will look naive. The point isn't to be right today. The point is to leave a trail I can follow back later.
+
+If anything on this list resonates with where you are right now, I'd be curious which item. The newsletter signup at the bottom is the easiest way to reply.

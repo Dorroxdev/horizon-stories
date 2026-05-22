@@ -71,18 +71,18 @@ describe('sortByPublishedAtDesc', () => {
 });
 
 describe('integration: real MDX glob', () => {
-  it('loads the hello-world stub post', () => {
+  it('loads the founder-stories launch post', () => {
     const posts = getAllPosts();
     expect(posts.length).toBeGreaterThanOrEqual(1);
-    const stub = posts.find((p) => p.slug === 'hello-world');
-    expect(stub).toBeDefined();
-    expect(stub?.title).toContain('Hello, world');
-    expect(stub?.pillar).toBe('founder-stories');
-    expect(stub?.relatedResource).toBe('saas-validation-toolkit');
+    const post = posts.find((p) => p.slug === 'building-horizon-launchpad-in-public');
+    expect(post).toBeDefined();
+    expect(post?.title).toContain('Horizon Launchpad');
+    expect(post?.pillar).toBe('founder-stories');
+    expect(post?.relatedResource).toBe('saas-validation-toolkit');
   });
 
   it('computes wordCount > 50 and readingTime >= 1 from the raw MDX body', () => {
-    const post = getPostBySlug('hello-world');
+    const post = getPostBySlug('building-horizon-launchpad-in-public');
     expect(post).toBeDefined();
     expect(post!.wordCount).toBeGreaterThan(50);
     expect(post!.readingTime).toBeGreaterThanOrEqual(1);

@@ -32,38 +32,38 @@ afterEach(() => {
 
 describe('PostDetailPage — Helmet SEO meta (post found, Task 1c)', () => {
   it('sets <title> to "<post.title>. Horizon Launchpad" period form', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       expect(document.title).toMatch(/\. Horizon Launchpad$/);
     });
     // Ensure the title contains the post title's leading text
-    expect(document.title.startsWith('Hello, world')).toBe(true);
+    expect(document.title).toContain('Horizon Launchpad');
   });
 
   it('sets description from post.excerpt', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const desc = document.querySelector('meta[name="description"]');
       expect(desc).not.toBeNull();
-      // hello-world excerpt begins with "A stub post that exists to prove"
-      expect(desc!.getAttribute('content')).toContain('A stub post');
+      // post excerpt begins with "Most founder stories"
+      expect(desc!.getAttribute('content')).toContain('Most founder stories');
     });
   });
 
   it('sets og:type to "article" and article:published_time', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const ogType = document.querySelector('meta[property="og:type"]');
       const published = document.querySelector(
         'meta[property="article:published_time"]',
       );
       expect(ogType?.getAttribute('content')).toBe('article');
-      expect(published?.getAttribute('content')).toBe('2026-05-18');
+      expect(published?.getAttribute('content')).toBe('2026-05-22');
     });
   });
 
   it('sets article:author and article:section (pillar label)', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const author = document.querySelector('meta[property="article:author"]');
       const section = document.querySelector(
@@ -75,7 +75,7 @@ describe('PostDetailPage — Helmet SEO meta (post found, Task 1c)', () => {
   });
 
   it('og:image falls back to /og-image.png when post.ogImage is missing', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const ogImage = document.querySelector('meta[property="og:image"]');
       expect(ogImage?.getAttribute('content')).toBe(
@@ -85,13 +85,13 @@ describe('PostDetailPage — Helmet SEO meta (post found, Task 1c)', () => {
   });
 
   it('og:image uses post.ogImage when provided (absolute URL composition)', async () => {
-    const realPost = postsLib.getPostBySlug('hello-world');
+    const realPost = postsLib.getPostBySlug('building-horizon-launchpad-in-public');
     expect(realPost).toBeDefined();
     vi.spyOn(postsLib, 'getPostBySlug').mockReturnValue({
       ...realPost!,
       ogImage: '/custom-og.png',
     });
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const ogImage = document.querySelector('meta[property="og:image"]');
       expect(ogImage?.getAttribute('content')).toBe(
@@ -101,20 +101,20 @@ describe('PostDetailPage — Helmet SEO meta (post found, Task 1c)', () => {
   });
 
   it('canonical link is absolute /posts/<slug>', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const canonical = document.querySelector('link[rel="canonical"]');
       expect(canonical?.getAttribute('href')).toBe(
-        'https://horizonlaunchpad.com/posts/hello-world',
+        'https://horizonlaunchpad.com/posts/building-horizon-launchpad-in-public',
       );
     });
   });
 
   it('omits article:modified_time when post.updatedAt is undefined', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       // assert something else first so Helmet has flushed
-      expect(document.title.startsWith('Hello, world')).toBe(true);
+      expect(document.title).toContain('Horizon Launchpad');
     });
     const modified = document.querySelector(
       'meta[property="article:modified_time"]',
@@ -123,12 +123,12 @@ describe('PostDetailPage — Helmet SEO meta (post found, Task 1c)', () => {
   });
 
   it('emits article:modified_time when post.updatedAt is set', async () => {
-    const realPost = postsLib.getPostBySlug('hello-world');
+    const realPost = postsLib.getPostBySlug('building-horizon-launchpad-in-public');
     vi.spyOn(postsLib, 'getPostBySlug').mockReturnValue({
       ...realPost!,
       updatedAt: '2026-05-19',
     });
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       const modified = document.querySelector(
         'meta[property="article:modified_time"]',
@@ -138,7 +138,7 @@ describe('PostDetailPage — Helmet SEO meta (post found, Task 1c)', () => {
   });
 
   it('Helmet title and description have no em dash (U+2014)', async () => {
-    renderDetail('/posts/hello-world');
+    renderDetail('/posts/building-horizon-launchpad-in-public');
     await waitFor(() => {
       expect(document.title.length).toBeGreaterThan(0);
     });

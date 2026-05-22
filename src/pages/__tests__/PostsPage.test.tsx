@@ -76,8 +76,8 @@ describe('PostsPage', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('shows empty state when filtering by expert-playbooks', () => {
-    renderPage('/posts?pillar=expert-playbooks');
+  it('shows empty state when filtering by guides-frameworks (pillar with no posts)', () => {
+    renderPage('/posts?pillar=guides-frameworks');
     expect(
       screen.getByText('No posts in this pillar yet.'),
     ).toBeInTheDocument();
@@ -86,7 +86,7 @@ describe('PostsPage', () => {
   });
 
   it('empty state shows "Show all posts" link to /posts', () => {
-    renderPage('/posts?pillar=ai-strategy');
+    renderPage('/posts?pillar=guides-frameworks');
     const link = screen.getByRole('link', { name: 'Show all posts' });
     expect(link.getAttribute('href')).toBe('/posts');
   });
